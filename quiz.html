@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<img src="getu.png" alt="getunik" style="float:right; width:200px;height:128px">
+
+	<br> <br>
+
+
+	<h1 style= "color:green">Welcome to the getunik quiz!</h1>
+	<p>For each question answered correctly, you get 10 points. Let's see how good you know getunik... </p>
+
+</head>
+<body>
+
+	
+
+	<ol class="list">
+	</ol>
+
+
+	<button>Submit Answers</button> <br> </br>
+
+
+<script>
+
+number1= {question:"Who dances Salsa since 8 years?", score: 15, correct_answer: 0, answers :[{text : "Marco Z."},{text: "Jürg"}, {text: "Katja"}]};
+
+number2= {question:"Who often eats 'Quark' with 'Farmer Muesli'?", score: 10, correct_answer: 2, answers :[{text:"Kilian"}, {text:"Jan"}, {text:"Tsuy"}, {text:"Jara"}]};
+
+number3= {question:"Who's wife is pregnant?", score: 10, correct_answer: 0, answers :[{text:"Jan U."}, {text:"Tsuy"}, {text:"Marco M."}, {text:"Stefan"}]};
+
+number4= {question:"Where was our 'Weihnachtsessen'?", score: 5, correct_answer: 2, answers :[{text:"Clouds in Zürich"}, {text:"Pizzeria in Rust"}, {text:"Alphütte in Portugal"}]};
+
+number5= {question:"What is a bad habit of almost each employee?", score: 5, correct_answer: 1, answers :[{text:"Being unathletic."}, {text:"Putting the cups next to the dishwasher instead of in it."}, {text:"Drinking too little coffee."}]};
+
+number6= {question:"What is the main nutrition of Lukas?", score: 5, correct_answer: 2, answers :[{text:"Fruits and Energy Drink"}, {text:"Biscuits and sparkling water"}, {text:"Gummy Bears and Energy Drink"}]};
+
+number7= {question:"Who drives a white BMW (next to 3 or 4 other cars...)?", score: 10, correct_answer: 3, answers :[{text:"Michel"}, {text:"Antonio"}, {text:"Alex"}, {text:"Kilian"}]}; 
+
+var questions = [number1, number2, number3, number4, number5, number6, number7]
+
+for (var key in questions) { 
+	var li = $("<li>"+ questions[key].question + "</li>");
+	$(".list").append("<br>");
+	$(".list").append(li );
+	li.append("<br>");
+	li.append("<br>");
+		for (var i in questions[key].answers) {		
+			li.append("<input type='radio' name='q" + key + "' /><span style='margin-right: 20px;'>" + questions[key].answers[i].text  + "</span>" + "<br>")}
+}
+
+$("button").click(function() {
+	var totalQuestions = questions.length
+    var correctAnswers = 0;
+    var totalScore = 0;
+
+
+	if(totalQuestions === $("input:checked").length) {      	
+ 		for(var key in questions) {		
+ 			var checked = $("input[name=q" + key  + "]:checked");	
+ 			
+ 							
+ 			if(questions[key].correct_answer === $("input[name=q" + key+ "]").index(checked)) {								
+ 				totalScore = totalScore + questions[key].score; 				
+ 				correctAnswers++;	
+
+ 			}else {}
+ 		}
+
+  		
+			alert("Your answered " + correctAnswers+ " out of " +  totalQuestions + " correctly. You scored " +totalScore+ " points.")											
+	  
+
+	} else {alert("You haven't answered all the " + totalQuestions + " questions yet! Please leave at least a guess.")}												
+     
+
+        
+}); 
+
+</script>
+
+</body>
+</html>
+
+
+
